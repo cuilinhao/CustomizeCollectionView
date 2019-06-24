@@ -11,10 +11,10 @@
 		70AD1C3422C103DD00406CA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70AD1C3222C103DD00406CA8 /* Main.storyboard */; };
 		70AD1C3622C103DD00406CA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70AD1C3522C103DD00406CA8 /* Assets.xcassets */; };
 		70AD1C3922C103DD00406CA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70AD1C3722C103DD00406CA8 /* LaunchScreen.storyboard */; };
-		70AD1C4422C103FF00406CA8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD1C4022C103FF00406CA8 /* ViewController.swift */; };
 		70AD1C4522C103FF00406CA8 /* PFCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD1C4122C103FF00406CA8 /* PFCollectionView.swift */; };
 		70AD1C4622C103FF00406CA8 /* PFCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD1C4222C103FF00406CA8 /* PFCollectionViewFlowLayout.swift */; };
 		70AD1C4722C103FF00406CA8 /* PFCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD1C4322C103FF00406CA8 /* PFCollectionViewCell.swift */; };
+		70AD1C4922C1050000406CA8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD1C4822C1050000406CA8 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,10 +24,10 @@
 		70AD1C3522C103DD00406CA8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70AD1C3822C103DD00406CA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		70AD1C3A22C103DD00406CA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		70AD1C4022C103FF00406CA8 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../CollectionView/PF_Custome_CollectionViewCell_swift/PF_Custome_CollectionViewCell/ViewController.swift; sourceTree = "<group>"; };
 		70AD1C4122C103FF00406CA8 /* PFCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFCollectionView.swift; sourceTree = "<group>"; };
 		70AD1C4222C103FF00406CA8 /* PFCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		70AD1C4322C103FF00406CA8 /* PFCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PFCollectionViewCell.swift; sourceTree = "<group>"; };
+		70AD1C4822C1050000406CA8 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				70AD1C2E22C103DD00406CA8 /* AppDelegate.swift */,
-				70AD1C4022C103FF00406CA8 /* ViewController.swift */,
+				70AD1C4822C1050000406CA8 /* ViewController.swift */,
 				70AD1C4122C103FF00406CA8 /* PFCollectionView.swift */,
 				70AD1C4322C103FF00406CA8 /* PFCollectionViewCell.swift */,
 				70AD1C4222C103FF00406CA8 /* PFCollectionViewFlowLayout.swift */,
@@ -144,7 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70AD1C4422C103FF00406CA8 /* ViewController.swift in Sources */,
+				70AD1C4922C1050000406CA8 /* ViewController.swift in Sources */,
 				70AD1C4622C103FF00406CA8 /* PFCollectionViewFlowLayout.swift in Sources */,
 				70AD1C4522C103FF00406CA8 /* PFCollectionView.swift in Sources */,
 				70AD1C4722C103FF00406CA8 /* PFCollectionViewCell.swift in Sources */,
