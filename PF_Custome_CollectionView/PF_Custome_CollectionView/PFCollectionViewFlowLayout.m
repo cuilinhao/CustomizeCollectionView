@@ -79,6 +79,7 @@
             x = [_originxArray[preRow] floatValue];
             y = [_originyArray[preRow] floatValue];
         }
+        
         NSIndexPath *preIndexPath = [NSIndexPath indexPathForItem:preRow inSection:indexPath.section];
         
         CGFloat preWidth = [self.delegate obtainItemWidth:self widthAtIndexPath:preIndexPath];
