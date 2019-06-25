@@ -13,8 +13,12 @@
 
 @property(nonatomic,assign)CGFloat rowHeight;///< 固定行高
 
-@property (nonatomic, strong) NSMutableArray  *originxArray;
-@property (nonatomic, strong) NSMutableArray  *originyArray;
+/** 保存cell的frame的x值 */
+@property (nonatomic, strong) NSMutableArray  *xFrameArray;
+
+/** 保存cell的frame的x值 */
+@property (nonatomic, strong) NSMutableArray  *yFrameArray;
+
 @property (nonatomic, strong) NSMutableArray  *cellArray;
 
 @end
@@ -27,16 +31,17 @@
     self = [super init];
     if (self) {
         self.rowHeight = rowHeight;
-        self.sectionInset = UIEdgeInsetsZero;
+		self.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
+		
         //列间距
         self.minimumInteritemSpacing = 15;
         //行间距
         self.minimumLineSpacing = 15;
         self.scrollDirection = UICollectionViewScrollDirectionVertical;
-        self.itemSize = CGSizeMake(60+30, [UIScreen mainScreen].bounds.size.height-64);
-        
-        self.originxArray = [NSMutableArray array];
-        self.originyArray = [NSMutableArray array];
+        self.itemSize = CGSizeMake(90, [UIScreen mainScreen].bounds.size.height-64);
+
+        self.xFrameArray = [NSMutableArray array];
+        self.yFrameArray = [NSMutableArray array];
         
     }
     return self;
@@ -62,46 +67,56 @@
 #pragma mark - 处理单个的Item的layoutAttributes
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.minimumInteritemSpacing = 15;
-    self.minimumLineSpacing = 15;//行间距
+	//collectionView 距离父视图左边的距离
+    CGFloat x = self.sectionInset.left;
+	
+	//collectionView 距离父视图顶部的距离
+    CGFloat y = self.sectionInset.top;
     
-    //CGFloat x = self.sectionInset.left;
-    //CGFloat y = self.sectionInset.top;
-    
-    CGFloat x = 0;
-    CGFloat y = 0;
-    
-    //判断获得前一个cell的x和y
+    //判断获得前一个cell的row
     NSInteger preRow = indexPath.row - 1;
     
-    if(preRow >= 0){
-        if(_originyArray.count > preRow){
-            x = [_originxArray[preRow] floatValue];
-            y = [_originyArray[preRow] floatValue];
+    if(preRow >= 0)
+	{
+        if(self.yFrameArray.count > preRow)
+		{
+            x = [self.xFrameArray[preRow] floatValue];
+            y = [self.yFrameArray[preRow] floatValue];
         }
         
         NSIndexPath *preIndexPath = [NSIndexPath indexPathForItem:preRow inSection:indexPath.section];
-        
         CGFloat preWidth = [self.delegate obtainItemWidth:self widthAtIndexPath:preIndexPath];
+		
         x += preWidth + self.minimumInteritemSpacing;
     }
-    
+	
+	//获取cell的宽度
     CGFloat currentWidth = [self.delegate obtainItemWidth:self widthAtIndexPath:indexPath];;
     
     //保证一个cell不超过最大宽度
     currentWidth = MIN(currentWidth, self.collectionView.frame.size.width - self.sectionInset.left - self.sectionInset.right);
-    
-    if(x + currentWidth > self.collectionView.frame.size.width - self.sectionInset.right){
-        //超出范围，换行
+	
+	//根据cell的宽度+间距 计算cell的x和y坐标，如果大于一行则换行，否则不换行
+    if(x + currentWidth > self.collectionView.frame.size.width - self.sectionInset.right)
+	{
+        //超出范围，换行 计算x值， y值
         x = self.sectionInset.left;
         y += _rowHeight + self.minimumLineSpacing;
     }
-    
-    // 创建属性
+	
+    // 创建属性设置cell的frame
     UICollectionViewLayoutAttributes *attrs = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
     attrs.frame = CGRectMake(x, y, currentWidth, _rowHeight);
-    _originxArray[indexPath.row] = @(x);
-    _originyArray[indexPath.row] = @(y);
+	
+	/*
+	 按照row将cell的frame的x和y插入进去
+	 也可以使用insertObject:方法
+	 */
+    self.xFrameArray[indexPath.row] = @(x);
+    self.yFrameArray[indexPath.row] = @(y);
+	
+	//NSLog(@"___xFrameArray___%@________yFrameArray___%@", self.xFrameArray, self.yFrameArray);
+	
     
     return attrs;
 }

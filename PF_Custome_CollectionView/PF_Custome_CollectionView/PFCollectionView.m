@@ -36,40 +36,12 @@
     if (!_flowLayout) {
 
         _flowLayout = [[PFCollectionViewFlowLayout alloc] initWithRowHeight:50];
-        
-        
-        _flowLayout.sectionInset = UIEdgeInsetsZero;
-        //列间距
-        _flowLayout.minimumInteritemSpacing = 15;
-        //行间距
-        _flowLayout.minimumLineSpacing = 15;
-        _flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        _flowLayout.itemSize = CGSizeMake(60+30, [UIScreen mainScreen].bounds.size.height-64);
         _flowLayout.delegate = self;
-        
-        
     }
     
     return _flowLayout;
 }
 
-
-- (UICollectionViewFlowLayout *)testFlow
-{
-    if (!_testFlow) {
-        _testFlow = [[UICollectionViewFlowLayout alloc] init];
-        _testFlow.sectionInset = UIEdgeInsetsZero;
-        //列间距
-        _testFlow.minimumInteritemSpacing = 15;
-        //行间距
-        _testFlow.minimumLineSpacing = 15;
-        _testFlow.scrollDirection = UICollectionViewScrollDirectionVertical;
-        _testFlow.itemSize = CGSizeMake(60+30, [UIScreen mainScreen].bounds.size.height-64);
-    }
-    
-    return _testFlow;
-    
-}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -107,8 +79,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    
-    //return 15+20;
+	
     return self.dataArray.count;
 }
 
@@ -137,13 +108,11 @@
 //MARK:--------返回列间距---------------
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 20-10-1 + 10;
+    return 10;
 }
 //返回行间距
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    //return 25-15;
-    
     return 25;
 }
 //返回距离边的距离
@@ -155,18 +124,11 @@
 //MARK:-设置宽和高度
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //CGSize textMaxSize = CGSizeMake(XMGScreenW - 2 * XMGMarin, MAXFLOAT);
-    
-    //_cellHeight += [self.text boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} context:nil].size.height + XMGMarin;
-    
-    
     NSString *text = [NSString stringWithFormat:@"   %@   ",self.dataArray[indexPath.row]];
     
     CGSize textMaxSize = CGSizeMake(kScreenW - 2 * 30, MAXFLOAT);
     
     CGFloat ww =  [text boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} context:nil].size.width;
-    
-    NSLog(@"++++++++%f", ww);
     
     return CGSizeMake(ww, 50);
 }
@@ -180,29 +142,12 @@
 
 - (CGFloat)obtainItemWidth:(PFCollectionViewFlowLayout *)layout widthAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *text = [NSString stringWithFormat:@"  %@ ",self.dataArray[indexPath.row]];
+    NSString *text = [NSString stringWithFormat:@"   %@  ",self.dataArray[indexPath.row]];
     CGSize textMaxSize = CGSizeMake(kScreenW - 2 *30, MAXFLOAT);
     CGFloat ww = [text boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} context:nil].size.width;
     
-    NSLog(@"___________%f", ww);
-    
     return ww;
 }
-
-
-//- (CGFloat)waterFlowLayout:(CourseFlowLayout *)layout widthAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSString *text = [NSString stringWithFormat:@"   %@   ",self.dataArray[indexPath.row]];
-//
-//    CGSize textMaxSize = CGSizeMake(kScreenW - 2 * 30, MAXFLOAT);
-//
-//    CGFloat ww =  [text boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} context:nil].size.width;
-//
-//    NSLog(@"++++++++%f", ww);
-//
-//    return ww ;
-//}
-
 
 
 @end
