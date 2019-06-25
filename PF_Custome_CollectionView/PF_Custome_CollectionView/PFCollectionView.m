@@ -47,11 +47,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        self.dataArray = @[@"醉桃花",@"天青色等烟雨,而我在等你",@"而我在等你",@"窈窕淑女",@"君子好逑",@"第一式斩星辰"].mutableCopy;
-        //    self.dataArray = @[@"这是一个",@"小普惠化",@"我要还款",@"宽带费",@"这是一个",@"小普惠化",@"我要还款",@"黑色手机宽带费"].mutableCopy;
-        //  self.dataArray = @[@"小浦书友会",@"卡面随心随心换换"].mutableCopy;
-        
+        self.dataArray = @[@"天青色等烟雨 , 而我在等你, 炊烟袅袅升起",@"炊烟袅袅升起....... ", @"隔江千万里...", @"在瓶底",@"书刻隶",@"仿前朝的飘逸",@"就当我",@"为遇见你伏笔",@"天青色等烟雨 而我在等你"].mutableCopy;
+		
         [self _initUI];
         
     }
@@ -76,10 +73,8 @@
 
 
 #pragma mark - UICollectionViewDataSource
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-	
     return self.dataArray.count;
 }
 
@@ -88,8 +83,6 @@
     PFCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
     cell.titleLb.text = self.dataArray[indexPath.row];
-    
-    
     
     if (indexPath.row % 2 == 0)
     {
