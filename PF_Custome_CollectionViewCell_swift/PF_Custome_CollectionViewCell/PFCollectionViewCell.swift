@@ -26,7 +26,7 @@ class PFCollectionViewCell: UICollectionViewCell {
 	func initUI() {
 		
 		self.addSubview(label)
-		label.frame = CGRect(x: 0, y: 0, width: self.bounds.size.width, height: 50)
+		label.frame = CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height)
 		label.text = "飞龙在天"
 		label.font = UIFont.systemFont(ofSize: 15)
 		label.textAlignment = .center

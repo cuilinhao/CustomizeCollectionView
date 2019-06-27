@@ -16,16 +16,15 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor.purple
 		
         _initUI()
-		
     }
 
 
     func _initUI() {
         
-        let collectionView = PFCollectionView.init(frame: CGRect(x: 0, y: 50, width: UIScreen.main.bounds.size.width, height: 500))
-        self.view .addSubview(collectionView)
+        let searchResultView = PFCollectionView.init(frame: CGRect(x: 0, y: 50, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height - 200))
+        self.view.addSubview(searchResultView)
         
-        collectionView.backgroundColor = UIColor.yellow
+        searchResultView.backgroundColor = UIColor.yellow
         
     }
 }
