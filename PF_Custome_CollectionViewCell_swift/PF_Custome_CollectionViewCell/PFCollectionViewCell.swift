@@ -11,16 +11,25 @@ import UIKit
 
 class PFCollectionViewCell: UICollectionViewCell {
 	
-	private lazy var label : UILabel = {
+	var label  = UILabel()
+	
+	override init(frame: CGRect) {
+		super.init(frame: frame)
 		
-		let label = UILabel()
+		initUI()
+	}
+	
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
+	func initUI() {
+		
+		self.addSubview(label)
 		label.frame = CGRect(x: 0, y: 0, width: self.bounds.size.width, height: 50)
 		label.text = "飞龙在天"
 		label.font = UIFont.systemFont(ofSize: 15)
 		label.textAlignment = .center
-		
-		return label
-		
-	}()
-    
+	}
+	
 }
