@@ -55,4 +55,76 @@ class PFCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
 extension PFCollectionViewFlowLayout {
     
+    
+    /*
+     - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
+     {
+     NSArray *array = [super layoutAttributesForElementsInRect:rect];
+     
+     NSMutableArray *itemArray = [NSMutableArray arrayWithCapacity:array.count];
+     
+     for (UICollectionViewLayoutAttributes *attrs in array) {
+     UICollectionViewLayoutAttributes *attr = [self layoutAttributesForItemAtIndexPath:attrs.indexPath];
+     [itemArray addObject:attr];
+     }
+     
+     return itemArray;
+     }
+     
+     */
+    
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        
+        let array = super.layoutAttributesForElements(in: rect)
+        
+        var itemArray = Array(repeating: "", count: array!.count)
+        
+        for attrs in array! {
+            
+            let att : UICollectionViewLayoutAttributes = layoutAttributesForItem(at: attrs.indexPath)!
+            itemArray.append(att)
+            
+        }
+        
+        return array
+    }
+    
+    
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        
+        //collectionView 距离父视图左边的距离
+        var x  = self.sectionInset.left
+        //collectionView 距离父视图顶部的距离
+        var y  = self.sectionInset.top
+        //判断获得前一个cell的row
+        let preRow = indexPath.row - 1
+        
+        if preRow >= 0 {
+            
+            if self.yFrameArray.count > preRow {
+                x = self.xFrameArray[preRow] as! CGFloat
+                y = self.yFrameArray[preRow] as! CGFloat
+            }
+        //？？？
+        let preIndexPath = IndexPath.init()
+            
+        let prewidth = self.delegate?.obtainItemWidth(layout: self, atIndexPath: preIndexPath) as! CGFloat
+            
+        x += prewidth + self.minimumLineSpacing
+    }
+        
+    //获取cell的宽度
+    var currentWidth = self.delegate?.obtainItemWidth(layout: self, atIndexPath: indexPath)
+    //保证一个cell不超过最大宽度
+    // currentWidth = min(currentWidth, self.collectionView.frame.size.width! - self.sectionInset.left - self.sectionInset.right)
+        
+        
+        return nil
+        
+    }
+    
 }
+
+
+
+
