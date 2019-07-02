@@ -117,7 +117,6 @@
 	
 	//NSLog(@"___xFrameArray___%@________yFrameArray___%@", self.xFrameArray, self.yFrameArray);
 	
-    
     return attrs;
 }
 

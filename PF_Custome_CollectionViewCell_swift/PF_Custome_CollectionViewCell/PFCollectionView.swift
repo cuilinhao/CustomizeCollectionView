@@ -64,14 +64,8 @@ extension PFCollectionView : UICollectionViewDelegate, UICollectionViewDataSourc
         {
             cell.backgroundColor = UIColor.red
         }
-        
-
-        
-        
-		
 		return cell
 	}
-
 	
 	// 每个分区的内边距
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -93,10 +87,50 @@ extension PFCollectionView : UICollectionViewDelegate, UICollectionViewDataSourc
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		
-		//return CGSize.init(width: (LBFMScreenWidth - 30) / 3, height:(LBFMScreenWidth - 30) / 3)
-		
-		
-		
+		//return CGSize.init(width: (LBFMScreenWidth - 30) / 3, height:(LBFMScreenWidth - 30) / 3)		
 		return CGSize(width: 50, height: 50)
+	}
+}
+
+extension PFCollectionView : PFCollectionViewFlowLayoutDelegate {
+	
+	func obtainItemWidth(layout:PFCollectionViewFlowLayout, atIndexPath: IndexPath) -> CGFloat {
+		
+		
+		/** 注释
+		func ga_widthForComment(fontSize: CGFloat, height: CGFloat = 15) -> CGFloat {
+		let font = UIFont.systemFont(ofSize: fontSize)
+		let rect = NSString(string: self).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: height), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+		return ceil(rect.width)
+		
+		}
+		*/
+		
+		//获取cell上字体的宽度
+		var wordWidth : CGFloat  = 0
+		
+		for item in self.dataArray {
+			print("__________\(item)")
+			
+			let text : NSString  = " "
+			
+			let maxSize = CGSize(width: UIScreen.main.bounds.size.width - 2 * 30, height: CGFloat(MAXFLOAT))
+			
+			let font = UIFont.systemFont(ofSize: 13)
+			
+			//let rect = NSString(string: text).boundingRect(with: maxSize, options: .usesFontLeading, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15)], context: nil)
+			
+			//let rect = NSString(string: text).boundingRect(with: maxSize, options: .usesFontLeading, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15)], context: nil)
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+		return 44
+		
 	}
 }

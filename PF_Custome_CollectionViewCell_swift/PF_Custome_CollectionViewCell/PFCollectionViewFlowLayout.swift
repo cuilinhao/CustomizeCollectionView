@@ -18,7 +18,8 @@ import UIKit
 
 protocol PFCollectionViewFlowLayoutDelegate: NSObjectProtocol {
     
-    func obtainItemWidth(layout:PFCollectionViewFlowLayout, atIndexPath: IndexPath)
+    //func obtainItemWidth(layout:PFCollectionViewFlowLayout, atIndexPath: IndexPath)
+	func obtainItemWidth(layout:PFCollectionViewFlowLayout, atIndexPath: IndexPath) -> CGFloat
 }
 
 
@@ -148,6 +149,7 @@ extension PFCollectionViewFlowLayout {
 		self.xFrameArray.insert(x, at: indexPath.row)
 		self.yFrameArray.insert(y, at: indexPath.row)
 		
+		return attrs
     }
     
 }
