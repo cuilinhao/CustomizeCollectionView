@@ -135,6 +135,7 @@
 
 - (CGFloat)obtainItemWidth:(PFCollectionViewFlowLayout *)layout widthAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     NSString *text = [NSString stringWithFormat:@"   %@  ",self.dataArray[indexPath.row]];
     CGSize textMaxSize = CGSizeMake(kScreenW - 2 *30, MAXFLOAT);
     CGFloat ww = [text boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15]} context:nil].size.width;

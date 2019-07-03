@@ -59,7 +59,6 @@ class PFCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
 extension PFCollectionViewFlowLayout {
     
-    
     /*
      - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
      {
@@ -91,10 +90,6 @@ extension PFCollectionViewFlowLayout {
             let att : UICollectionViewLayoutAttributes = layoutAttributesForItem(at: attrs.indexPath)!
             itemArray.append(att)
         }
-		
-		
-		
-		
         return array
     }
     

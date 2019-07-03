@@ -119,10 +119,12 @@ extension PFCollectionView : PFCollectionViewFlowLayoutDelegate {
 			let font = UIFont.systemFont(ofSize: 13)
 			
 			//let rect = NSString(string: text).boundingRect(with: maxSize, options: .usesFontLeading, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15)], context: nil)
-			
-			//let rect = NSString(string: text).boundingRect(with: maxSize, options: .usesFontLeading, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15)], context: nil)
-			
-			
+            
+            
+            let rect = NSString(string: text).boundingRect(with: maxSize, options: .usesFontLeading, attributes: [NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 20)], context: nil).size.width
+            
+            
+            
 			
 		}
 		
