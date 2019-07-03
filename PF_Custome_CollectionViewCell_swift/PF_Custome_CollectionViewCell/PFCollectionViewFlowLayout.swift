@@ -112,40 +112,50 @@ extension PFCollectionViewFlowLayout {
         //？？？
         let preIndexPath = IndexPath.init()
             
-        let prewidth = self.delegate?.obtainItemWidth(layout: self, atIndexPath: preIndexPath) as! CGFloat
-            
-        x += prewidth + self.minimumLineSpacing
+        //let prewidth = self.delegate?.obtainItemWidth(layout: self, atIndexPath: preIndexPath) as! CGFloat
+        //x += prewidth + self.minimumLineSpacing
+        if let prewidth = self.delegate?.obtainItemWidth(layout: self, atIndexPath: preIndexPath) {
+            x += prewidth + self.minimumLineSpacing
+        }
     }
         
+        
+        
     //获取cell的宽度
-    let currentWidth = self.delegate?.obtainItemWidth(layout: self, atIndexPath: indexPath) as! CGFloat
-		
-    //保证一个cell不超过最大宽度
-	let scrollViewFrame = self.collectionView?.frame.size.width
-	
-	let currentItemWidth = min(currentWidth, scrollViewFrame! - self.sectionInset.left - self.sectionInset.right)
-		
-     //根据cell的宽度+间距 计算cell的x和y坐标，如果大于一行则换行，否则不换行
-		if x + currentItemWidth > scrollViewFrame! - self.sectionInset.right {
-			
-			//超出范围，换行 计算x值， y值
-			x = self.sectionInset.left
-			y += self.rowHeight
-		}
-		
-		//创建属性设置cell的frame
-		let attrs : UICollectionViewLayoutAttributes = UICollectionViewLayoutAttributes.init(forCellWith: indexPath)
-		attrs.frame = CGRect(x: x, y: y, width: currentWidth, height: self.rowHeight)
-		
-		/*
-		按照row将cell的frame的x和y插入进去
-		也可以使用insertObject:方法
-		*/
-		self.xFrameArray.insert(x, at: indexPath.row)
-		self.yFrameArray.insert(y, at: indexPath.row)
-		
-		return attrs
+    //let currentWidth = self.delegate?.obtainItemWidth(layout: self, atIndexPath: indexPath) as! CGFloat
+        
+        if let currentWidth = self.delegate?.obtainItemWidth(layout: self, atIndexPath: indexPath) {
+            //保证一个cell不超过最大宽度
+            let scrollViewFrame = self.collectionView?.frame.size.width
+            
+            let currentItemWidth = min(currentWidth, scrollViewFrame! - self.sectionInset.left - self.sectionInset.right)
+            
+            //根据cell的宽度+间距 计算cell的x和y坐标，如果大于一行则换行，否则不换行
+            if x + currentItemWidth > scrollViewFrame! - self.sectionInset.right {
+                
+                //超出范围，换行 计算x值， y值
+                x = self.sectionInset.left
+                y += self.rowHeight
+            }
+            
+            //创建属性设置cell的frame
+            let attrs : UICollectionViewLayoutAttributes = UICollectionViewLayoutAttributes.init(forCellWith: indexPath)
+            attrs.frame = CGRect(x: x, y: y, width: currentWidth, height: self.rowHeight)
+            
+            /*
+             按照row将cell的frame的x和y插入进去
+             也可以使用insertObject:方法
+             */
+            self.xFrameArray.insert(x, at: indexPath.row)
+            self.yFrameArray.insert(y, at: indexPath.row)
+            
+            return attrs
+        }
+        
+        return nil;
     }
+		
+    
     
 }
 
