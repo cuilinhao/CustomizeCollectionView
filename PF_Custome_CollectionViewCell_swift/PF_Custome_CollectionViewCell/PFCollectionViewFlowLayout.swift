@@ -9,13 +9,6 @@
 import UIKit
 
 
-/// 添加按钮点击代理方法
-//protocol LBFMRecommendHeaderCellDelegate:NSObjectProtocol {
-//    func recommendHeaderBtnClick(categoryId:String,title:String,url:String)
-//    func recommendHeaderBannerClick(url:String)
-//}
-
-
 protocol PFCollectionViewFlowLayoutDelegate: NSObjectProtocol {
     
     //func obtainItemWidth(layout:PFCollectionViewFlowLayout, atIndexPath: IndexPath)
@@ -59,31 +52,9 @@ class PFCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
 extension PFCollectionViewFlowLayout {
     
-    /*
-     - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
-     {
-     NSArray *array = [super layoutAttributesForElementsInRect:rect];
-     
-     NSMutableArray *itemArray = [NSMutableArray arrayWithCapacity:array.count];
-     
-     for (UICollectionViewLayoutAttributes *attrs in array) {
-     UICollectionViewLayoutAttributes *attr = [self layoutAttributesForItemAtIndexPath:attrs.indexPath];
-     [itemArray addObject:attr];
-     }
-     
-     return itemArray;
-     }
-     
-     */
-    
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
 		
-		//var attributes : NSMutableArray = super.layoutAttributesForElements(in: rect) as! NSMutableArray
-		
         let array = super.layoutAttributesForElements(in: rect)
-        
-        //var itemArray = Array(repeating: "", count: array!.count)
-		
 		var itemArray = Array<Any>()
         for attrs in array! {
             
@@ -109,11 +80,8 @@ extension PFCollectionViewFlowLayout {
                 x = self.xFrameArray[preRow] as! CGFloat
                 y = self.yFrameArray[preRow] as! CGFloat
             }
-        //？？？
+
         let preIndexPath = IndexPath.init()
-            
-        //let prewidth = self.delegate?.obtainItemWidth(layout: self, atIndexPath: preIndexPath) as! CGFloat
-        //x += prewidth + self.minimumLineSpacing
         if let prewidth = self.delegate?.obtainItemWidth(layout: self, atIndexPath: preIndexPath) {
             x += prewidth + self.minimumLineSpacing
         }
@@ -122,8 +90,6 @@ extension PFCollectionViewFlowLayout {
         
         
     //获取cell的宽度
-    //let currentWidth = self.delegate?.obtainItemWidth(layout: self, atIndexPath: indexPath) as! CGFloat
-        
         if let currentWidth = self.delegate?.obtainItemWidth(layout: self, atIndexPath: indexPath) {
             //保证一个cell不超过最大宽度
             let scrollViewFrame = self.collectionView?.frame.size.width

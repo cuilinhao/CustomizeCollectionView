@@ -86,8 +86,7 @@ extension PFCollectionView : UICollectionViewDelegate, UICollectionViewDataSourc
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		
-		//return CGSize.init(width: (LBFMScreenWidth - 30) / 3, height:(LBFMScreenWidth - 30) / 3)		
+			
 		return CGSize(width: 50, height: 50)
 	}
 }
@@ -98,12 +97,9 @@ extension PFCollectionView : PFCollectionViewFlowLayoutDelegate {
         
         //获取cell上字体的宽度
         
-        //var widthArr = [Any]()
         var widthArr:[CGFloat] = []
         for item in self.dataArray {
             
-            //var text : NSString  = " "
-            //text = text.appending(item) as NSString
             let text : NSString  = NSString(string: item)
             
             let maxSize = CGSize(width: UIScreen.main.bounds.size.width - 2 * 30, height: CGFloat(MAXFLOAT))
